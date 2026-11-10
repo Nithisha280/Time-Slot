@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Class Timetable</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f5f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #172554;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #172554;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 25px;
+        }
+
+        th {
+            background-color: #1e40af;
+            color: white;
+            padding: 15px;
+        }
+
+        td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        tr:nth-child(even) {
+            background-color: #eff6ff;
+        }
+
+        tr:hover {
+            background-color: #dbeafe;
+        }
+
+        .empty-message {
+            color: #dc2626;
+            font-weight: bold;
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #172554;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                width: 95%;
+                padding: 10px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 8px 4px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Website heading -->
+    <header>
+
+        <h1>CLASS TIMETABLE</h1>
+
+        <p>Department of Computer Science</p>
+
+    </header>
+
+
+    <div class="container">
+
+        <h2>Weekly Class Timetable</h2>
+
+        <p style="text-align:center;">
+            Academic Year 2026 - 2027
+        </p>
+
+
+        <!-- Timetable HTML table -->
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Day</th>
+
+                    <th>Time Slot</th>
+
+                    <th>Subject</th>
+
+                    <th>Faculty Name</th>
+
+                    <th>Classroom</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                <!-- Django for loop -->
+
+                {% for item in timetable_records %}
+
+                <tr>
+
+                    <td>{{ item.day }}</td>
+
+                    <td>
+                        {{ item.start_time|time:"h:i A" }}
+                        -
+                        {{ item.end_time|time:"h:i A" }}
+                    </td>
+
+                    <td>{{ item.subject_name }}</td>
+
+                    <td>{{ item.faculty_name }}</td>
+
+                    <td>{{ item.classroom }}</td>
+
+                </tr>
+
+                <!-- If no records are available -->
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="5" class="empty-message">
+
+                        No timetable records available.
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <!-- Website footer -->
+    <footer>
+
+        <p>College Timetable Management System</p>
+
+        <p>Developed using Python, Django, HTML and CSS</p>
+
+    </footer>
+
+</body>
+
+</html>
